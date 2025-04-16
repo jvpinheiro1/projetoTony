@@ -118,7 +118,32 @@ namespace projeto1
             pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+
             label1.Text = "Desconectado";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bool flag = false;
+
+            if (flag == false)
+            {
+                pictureBox2.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                button2.Text = "Desligar";
+                
+            }
+            else
+            {
+                pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                button2.Text = "Ligar";
+            }
+
         }
     }
 }
