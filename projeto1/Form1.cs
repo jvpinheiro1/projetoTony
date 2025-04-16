@@ -92,6 +92,7 @@ namespace projeto1
                     comboBox1.Enabled = false;
                     pictureBox1.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    label1.Text = "Conectado";
                 }
             }
             else
@@ -103,6 +104,7 @@ namespace projeto1
                     button1.Text = "Conectar";
                     pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    label1.Text = "Desconectado";
                 }
                 catch
                 {
@@ -115,6 +117,8 @@ namespace projeto1
         {
             pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            label1.Text = "Desconectado";
         }
     }
 }
