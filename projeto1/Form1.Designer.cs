@@ -36,17 +36,21 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.labelTemperatura = new System.Windows.Forms.Label();
+            this.labelUmidade = new System.Windows.Forms.Label();
+            this.labelTensao = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -126,8 +130,39 @@
             this.tabPage2.Text = "LED";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(450, 114);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(280, 238);
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(334, 37);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "CONTROLE DE LED";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(92, 182);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 58);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "LIGAR";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.labelTensao);
+            this.tabPage3.Controls.Add(this.labelUmidade);
+            this.tabPage3.Controls.Add(this.labelTemperatura);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -142,33 +177,35 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button2
+            // labelTemperatura
             // 
-            this.button2.Location = new System.Drawing.Point(92, 182);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 58);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "LIGAR";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.labelTemperatura.AutoSize = true;
+            this.labelTemperatura.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTemperatura.Location = new System.Drawing.Point(46, 60);
+            this.labelTemperatura.Name = "labelTemperatura";
+            this.labelTemperatura.Size = new System.Drawing.Size(92, 31);
+            this.labelTemperatura.TabIndex = 0;
+            this.labelTemperatura.Text = "label3";
             // 
-            // label2
+            // labelUmidade
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(334, 37);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "CONTROLE DE LED";
+            this.labelUmidade.AutoSize = true;
+            this.labelUmidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUmidade.Location = new System.Drawing.Point(46, 148);
+            this.labelUmidade.Name = "labelUmidade";
+            this.labelUmidade.Size = new System.Drawing.Size(92, 31);
+            this.labelUmidade.TabIndex = 1;
+            this.labelUmidade.Text = "label4";
             // 
-            // pictureBox2
+            // labelTensao
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(450, 114);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(280, 238);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.labelTensao.AutoSize = true;
+            this.labelTensao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTensao.Location = new System.Drawing.Point(46, 244);
+            this.labelTensao.Name = "labelTensao";
+            this.labelTensao.Size = new System.Drawing.Size(92, 31);
+            this.labelTensao.TabIndex = 2;
+            this.labelTensao.Text = "label5";
             // 
             // Form1
             // 
@@ -187,6 +224,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -206,6 +245,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label labelTensao;
+        private System.Windows.Forms.Label labelUmidade;
+        private System.Windows.Forms.Label labelTemperatura;
     }
 }
 

@@ -13,7 +13,7 @@ namespace projeto1
 {
     public partial class Form1 : Form
     {
-        string RxString;
+        
 
         public Form1()
         {
@@ -113,6 +113,22 @@ namespace projeto1
             }
         }
 
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string dados = serialPort1.ReadLine();
+            this.BeginInvoke(new Action(() =>
+            {
+                string[] valores = dados.Split(',');
+                if (valores.Length == 3)
+                {
+                    labelTemperatura.Text = $"Temperatura: {valores[0]} °C";
+                    labelUmidade.Text = $"Umidade: {valores[1]} %";
+                    labelTensao.Text = $"Tensão A0: {valores[2]} V";
+                }
+            }));
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
@@ -121,29 +137,34 @@ namespace projeto1
             pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            serialPort1.DataReceived += serialPort1_DataReceived;
+
+
             label1.Text = "Desconectado";
         }
 
+        private bool estadoLED = false;
+
         private void button2_Click(object sender, EventArgs e)
         {
-            bool flag = false;
-
-            if (flag == false)
+            if (serialPort1.IsOpen)
             {
-                pictureBox2.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                estadoLED = !estadoLED;
 
-                button2.Text = "Desligar";
-                
+                if (estadoLED)
+                {
+                    serialPort1.WriteLine("L");
+                    pictureBox2.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
+                    button2.Text = "Desligar";
+                }
+                else
+                {
+                    serialPort1.WriteLine("D");
+                    pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
+                    button2.Text = "Ligar";
+                }
             }
-            else
-            {
-                pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                button2.Text = "Ligar";
-            }
-
         }
+
     }
 }
