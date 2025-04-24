@@ -40,11 +40,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.thermControl1 = new ThermometerControl.ThermControl();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.labelTemperatura = new System.Windows.Forms.Label();
-            this.labelUmidade = new System.Windows.Forms.Label();
-            this.labelTensao = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -160,9 +158,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.labelTensao);
-            this.tabPage3.Controls.Add(this.labelUmidade);
-            this.tabPage3.Controls.Add(this.labelTemperatura);
+            this.tabPage3.Controls.Add(this.thermControl1);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -171,41 +167,25 @@
             this.tabPage3.Text = "SENSORES";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // thermControl1
+            // 
+            this.thermControl1.Location = new System.Drawing.Point(71, 56);
+            this.thermControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.thermControl1.MinimumSize = new System.Drawing.Size(210, 315);
+            this.thermControl1.Name = "thermControl1";
+            this.thermControl1.Size = new System.Drawing.Size(210, 315);
+            this.thermControl1.TabIndex = 0;
+            this.thermControl1.Value = 0;
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // labelTemperatura
-            // 
-            this.labelTemperatura.AutoSize = true;
-            this.labelTemperatura.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTemperatura.Location = new System.Drawing.Point(46, 60);
-            this.labelTemperatura.Name = "labelTemperatura";
-            this.labelTemperatura.Size = new System.Drawing.Size(92, 31);
-            this.labelTemperatura.TabIndex = 0;
-            this.labelTemperatura.Text = "label3";
-            // 
-            // labelUmidade
-            // 
-            this.labelUmidade.AutoSize = true;
-            this.labelUmidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUmidade.Location = new System.Drawing.Point(46, 148);
-            this.labelUmidade.Name = "labelUmidade";
-            this.labelUmidade.Size = new System.Drawing.Size(92, 31);
-            this.labelUmidade.TabIndex = 1;
-            this.labelUmidade.Text = "label4";
-            // 
-            // labelTensao
-            // 
-            this.labelTensao.AutoSize = true;
-            this.labelTensao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTensao.Location = new System.Drawing.Point(46, 244);
-            this.labelTensao.Name = "labelTensao";
-            this.labelTensao.Size = new System.Drawing.Size(92, 31);
-            this.labelTensao.TabIndex = 2;
-            this.labelTensao.Text = "label5";
             // 
             // Form1
             // 
@@ -225,7 +205,6 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,9 +224,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label labelTensao;
-        private System.Windows.Forms.Label labelUmidade;
-        private System.Windows.Forms.Label labelTemperatura;
+        private ThermometerControl.ThermControl thermControl1;
     }
 }
 

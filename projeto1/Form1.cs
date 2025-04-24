@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO.Ports;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace projeto1
 {
     public partial class Form1 : Form
     {
-        
+        private bool estadoLED = false;
 
         public Form1()
         {
@@ -22,20 +17,19 @@ namespace projeto1
 
         private void atualizaListaCOMs()
         {
-            int i;
-            bool quantDiferente; //flag para sinalizar que a quantixade de portas mudou
+            int i = 0;
+            bool quantDiferente = false;
 
-            i = 0;
-            quantDiferente = false;
+            string[] portas = SerialPort.GetPortNames();
 
-            //se a quantidade de portas mudeou
-            if (comboBox1.Items.Count == SerialPort.GetPortNames().Length)
+            if (comboBox1.Items.Count == portas.Length)
             {
-                foreach (string s in SerialPort.GetPortNames())
+                foreach (string s in portas)
                 {
-                    if (comboBox1.Items[i++].Equals(s) == false)
+                    if (!comboBox1.Items[i++].Equals(s))
                     {
                         quantDiferente = true;
+                        break;
                     }
                 }
             }
@@ -44,28 +38,18 @@ namespace projeto1
                 quantDiferente = true;
             }
 
-            //se não foi detectado diferença
-            if (quantDiferente == false)
-            {
-                return;   //retorna
-            }
+            if (!quantDiferente) return;
 
-            // limpa comboBox
             comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(portas);
 
-            //adciona todas as COM disponiveis na lista
-            foreach (string s in SerialPort.GetPortNames())
-            {
-                comboBox1.Items.Add(s);
-            }
-
-            //seleciona a primeira posição da lista
-            comboBox1.SelectedIndex = 0;
+            if (comboBox1.Items.Count > 0)
+                comboBox1.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Pode ser deixado vazio se não for necessário.
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -75,17 +59,18 @@ namespace projeto1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (serialPort1.IsOpen == false)
+            if (!serialPort1.IsOpen)
             {
                 try
                 {
-                    serialPort1.PortName = comboBox1.Items[comboBox1.SelectedIndex].ToString();
+                    serialPort1.PortName = comboBox1.SelectedItem.ToString();
                     serialPort1.Open();
                 }
                 catch
                 {
                     return;
                 }
+
                 if (serialPort1.IsOpen)
                 {
                     button1.Text = "Desconectar";
@@ -115,19 +100,8 @@ namespace projeto1
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string dados = serialPort1.ReadLine();
-            this.BeginInvoke(new Action(() =>
-            {
-                string[] valores = dados.Split(',');
-                if (valores.Length == 3)
-                {
-                    labelTemperatura.Text = $"Temperatura: {valores[0]} °C";
-                    labelUmidade.Text = $"Umidade: {valores[1]} %";
-                    labelTensao.Text = $"Tensão A0: {valores[2]} V";
-                }
-            }));
+            this.Invoke(new EventHandler(lerTemperatura));
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -139,11 +113,8 @@ namespace projeto1
 
             serialPort1.DataReceived += serialPort1_DataReceived;
 
-
             label1.Text = "Desconectado";
         }
-
-        private bool estadoLED = false;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -151,20 +122,43 @@ namespace projeto1
             {
                 estadoLED = !estadoLED;
 
-                if (estadoLED)
-                {
-                    serialPort1.WriteLine("L");
-                    pictureBox2.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
-                    button2.Text = "Desligar";
-                }
-                else
-                {
-                    serialPort1.WriteLine("D");
-                    pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
-                    button2.Text = "Ligar";
-                }
+                serialPort1.WriteLine(estadoLED ? "L" : "D");
+
+                pictureBox2.Image = Image.FromFile(estadoLED ? "c:\\imagens\\Verde.bmp" : "c:\\imagens\\Vermelho.bmp");
+                button2.Text = estadoLED ? "Desligar" : "Ligar";
             }
         }
+
+        private void lerTemperatura(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] linhas = serialPort1.ReadExisting()
+                    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string linha in linhas)
+                {
+                    Console.WriteLine("Recebido: " + linha);
+
+                    if (float.TryParse(linha.Replace(',', '.'), System.Globalization.NumberStyles.Float,
+                        System.Globalization.CultureInfo.InvariantCulture, out float temperatura))
+                    {
+
+                        // Atualiza controle visual
+                        thermControl1.UpdateControl((int)temperatura);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor inválido: " + linha);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao ler temperatura: " + ex.Message);
+            }
+        }
+
 
     }
 }

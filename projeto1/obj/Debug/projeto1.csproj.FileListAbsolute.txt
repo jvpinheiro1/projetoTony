@@ -18,3 +18,5 @@ C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj
 C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.CoreCompileInputs.cache
 C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.exe
 C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.pdb
+C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\bin\Debug\ThermometerControl.dll
+C:\Users\Aluno\Desktop\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.Up2Date
