@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace projeto1
 {
+    private StringBuilder bufferRecebido = new StringBuilder();
     public partial class Form1 : Form
     {
         private bool estadoLED = false;
@@ -100,7 +101,23 @@ namespace projeto1
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            this.Invoke(new EventHandler(lerTemperatura));
+            try
+            {
+                // Le os dados recebidos e adiciona ao buffer
+                bufferRecebido.Append(serialPort1.ReadExisting());
+
+                // Se o dado contém uma quebra de linha, processa a infornaçao
+                if (bufferRecebido.ToString().Contains("\n"))
+                {
+                    this.Invoke(new EventHandler(trataDadoRecebido));
+                }
+
+                    
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao receber dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -129,36 +146,46 @@ namespace projeto1
             }
         }
 
-        private void lerTemperatura(object sender, EventArgs e)
-        {
+        private void lerDadosArduino(object sender, EventArgs e)
+{
             try
             {
-                string[] linhas = serialPort1.ReadExisting()
-                    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] linhas = bufferRecebido.ToString().Split('\n');
+                bufferRecebido.Clear();
 
-                foreach (string linha in linhas)
+                if (linhas.Length > 0)
                 {
-                    Console.WriteLine("Recebido: " + linha);
+                    bufferRecebido.Append(linhas[linhas.Length - 1]);
+                }
 
-                    if (float.TryParse(linha.Replace(',', '.'), System.Globalization.NumberStyles.Float,
-                        System.Globalization.CultureInfo.InvariantCulture, out float temperatura))
-                    {
+                // Agora dividimos os dados usando a vírgula como delimitador
+                string dadosRecebidos = linhas[0].Trim();
+                string[] dados = dadosRecebidos.Split(',');
 
-                        // Atualiza controle visual
-                        thermControl1.UpdateControl((int)temperatura);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Valor inválido: " + linha);
-                    }
+
+
+                if (dados.Length == 3)
+                {
+                    double temperatura = double.Parse(dados[0].Replace(".", ","));
+                    double tensaoA0 = double.Parse(dados[2].Replace(".", ","));
+
+                    aGauge1.Value = Convert.ToInt32(temperatura); // Atualizando o valor do gauge da temperatura
+                    aGauge3.Value = Convert.ToInt32(tensaoA0 * 10);
+
+                    // Atualiza os rótulos na interface
+                }
+                else
+                {
+                    MessageBox.Show("Dados recebidos estão com formato incorreto.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao ler temperatura: " + ex.Message);
+                MessageBox.Show("Erro ao processar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+    }
 
     }
 }
