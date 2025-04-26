@@ -6,118 +6,14 @@ using System.Windows.Forms;
 
 namespace projeto1
 {
-    private StringBuilder bufferRecebido = new StringBuilder();
     public partial class Form1 : Form
     {
         private bool estadoLED = false;
+        private string bufferRecebido = "";
 
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void atualizaListaCOMs()
-        {
-            int i = 0;
-            bool quantDiferente = false;
-
-            string[] portas = SerialPort.GetPortNames();
-
-            if (comboBox1.Items.Count == portas.Length)
-            {
-                foreach (string s in portas)
-                {
-                    if (!comboBox1.Items[i++].Equals(s))
-                    {
-                        quantDiferente = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                quantDiferente = true;
-            }
-
-            if (!quantDiferente) return;
-
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(portas);
-
-            if (comboBox1.Items.Count > 0)
-                comboBox1.SelectedIndex = 0;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Pode ser deixado vazio se não for necessário.
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            atualizaListaCOMs();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (!serialPort1.IsOpen)
-            {
-                try
-                {
-                    serialPort1.PortName = comboBox1.SelectedItem.ToString();
-                    serialPort1.Open();
-                }
-                catch
-                {
-                    return;
-                }
-
-                if (serialPort1.IsOpen)
-                {
-                    button1.Text = "Desconectar";
-                    comboBox1.Enabled = false;
-                    pictureBox1.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                    label1.Text = "Conectado";
-                }
-            }
-            else
-            {
-                try
-                {
-                    serialPort1.Close();
-                    comboBox1.Enabled = true;
-                    button1.Text = "Conectar";
-                    pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                    label1.Text = "Desconectado";
-                }
-                catch
-                {
-                    return;
-                }
-            }
-        }
-
-        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                // Le os dados recebidos e adiciona ao buffer
-                bufferRecebido.Append(serialPort1.ReadExisting());
-
-                // Se o dado contém uma quebra de linha, processa a infornaçao
-                if (bufferRecebido.ToString().Contains("\n"))
-                {
-                    this.Invoke(new EventHandler(trataDadoRecebido));
-                }
-
-                    
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao receber dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -133,6 +29,62 @@ namespace projeto1
             label1.Text = "Desconectado";
         }
 
+        private void atualizaListaCOMs()
+        {
+            string[] portas = SerialPort.GetPortNames();
+
+            if (!portas.SequenceEqual(comboBox1.Items.Cast<string>()))
+            {
+                comboBox1.Items.Clear();
+                comboBox1.Items.AddRange(portas);
+                if (comboBox1.Items.Count > 0)
+                    comboBox1.SelectedIndex = 0;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            atualizaListaCOMs();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!serialPort1.IsOpen)
+            {
+                try
+                {
+                    serialPort1.PortName = comboBox1.SelectedItem.ToString();
+                    serialPort1.Open();
+
+                    button1.Text = "Desconectar";
+                    comboBox1.Enabled = false;
+                    pictureBox1.Image = Image.FromFile("c:\\imagens\\Verde.bmp");
+                    label1.Text = "Conectado";
+                }
+                catch
+                {
+                    MessageBox.Show("Erro ao conectar.");
+                }
+            }
+            else
+            {
+                try
+                {
+                    serialPort1.DataReceived -= serialPort1_DataReceived;
+                    serialPort1.Close();
+
+                    button1.Text = "Conectar";
+                    comboBox1.Enabled = true;
+                    pictureBox1.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
+                    label1.Text = "Desconectado";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao desconectar: " + ex.Message);
+                }
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (serialPort1.IsOpen)
@@ -146,46 +98,49 @@ namespace projeto1
             }
         }
 
-        private void lerDadosArduino(object sender, EventArgs e)
-{
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (!serialPort1.IsOpen) return;
+
             try
             {
-                string[] linhas = bufferRecebido.ToString().Split('\n');
-                bufferRecebido.Clear();
+                string dados = serialPort1.ReadExisting();
+                bufferRecebido += dados;
 
-                if (linhas.Length > 0)
+                if (bufferRecebido.Contains("\n"))
                 {
-                    bufferRecebido.Append(linhas[linhas.Length - 1]);
-                }
+                    this.Invoke(new Action(() =>
+                    {
+                        string[] linhas = bufferRecebido.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-                // Agora dividimos os dados usando a vírgula como delimitador
-                string dadosRecebidos = linhas[0].Trim();
-                string[] dados = dadosRecebidos.Split(',');
+                        if (linhas.Length > 0)
+                        {
+                            string ultimaLinha = linhas[linhas.Length - 1];
+                            bufferRecebido = ""; // limpar buffer após leitura
 
+                            string[] partes = ultimaLinha.Split(',');
 
-
-                if (dados.Length == 3)
-                {
-                    double temperatura = double.Parse(dados[0].Replace(".", ","));
-                    double tensaoA0 = double.Parse(dados[2].Replace(".", ","));
-
-                    aGauge1.Value = Convert.ToInt32(temperatura); // Atualizando o valor do gauge da temperatura
-                    aGauge3.Value = Convert.ToInt32(tensaoA0 * 10);
-
-                    // Atualiza os rótulos na interface
-                }
-                else
-                {
-                    MessageBox.Show("Dados recebidos estão com formato incorreto.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (partes.Length == 2 &&
+                                double.TryParse(partes[0], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double temperatura) &&
+                                double.TryParse(partes[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double tensao))
+                            {
+                                thermControl1.UpdateControl((int)temperatura);
+                                aGauge1.Value = (int)(tensao * 20); 
+                            }
+                        }
+                    }));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao processar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                Console.WriteLine("Erro na leitura da porta serial: " + ex.Message);
             }
         }
 
-    }
-
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
