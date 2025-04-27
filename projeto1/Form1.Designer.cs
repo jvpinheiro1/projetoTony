@@ -44,10 +44,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.aGauge1 = new System.Windows.Forms.AGauge();
             this.thermControl1 = new ThermometerControl.ThermControl();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.aGauge1 = new System.Windows.Forms.AGauge();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,7 +62,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(1, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1064, 556);
@@ -75,9 +75,9 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1056, 527);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CONEXÃO";
@@ -97,7 +97,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(40, 238);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(204, 165);
             this.pictureBox1.TabIndex = 4;
@@ -107,7 +107,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(40, 63);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(204, 74);
             this.button1.TabIndex = 1;
@@ -120,7 +120,7 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(288, 63);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(183, 47);
             this.comboBox1.TabIndex = 0;
@@ -132,9 +132,9 @@
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1056, 527);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "LED";
@@ -142,10 +142,10 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(600, 140);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(630, 194);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(373, 293);
+            this.pictureBox2.Size = new System.Drawing.Size(309, 267);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
@@ -153,7 +153,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 30);
+            this.label2.Location = new System.Drawing.Point(298, 38);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(413, 46);
@@ -163,7 +163,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(123, 224);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(181, 71);
             this.button2.TabIndex = 0;
@@ -176,13 +176,89 @@
             this.tabPage3.Controls.Add(this.aGauge1);
             this.tabPage3.Controls.Add(this.thermControl1);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1056, 527);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "SENSORES";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // aGauge1
+            // 
+            this.aGauge1.BackColor = System.Drawing.SystemColors.Window;
+            this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
+            this.aGauge1.BaseArcRadius = 110;
+            this.aGauge1.BaseArcStart = 135;
+            this.aGauge1.BaseArcSweep = 270;
+            this.aGauge1.BaseArcWidth = 2;
+            this.aGauge1.Center = new System.Drawing.Point(190, 175);
+            aGaugeRange1.Color = System.Drawing.Color.Lime;
+            aGaugeRange1.EndValue = 25F;
+            aGaugeRange1.InnerRadius = 80;
+            aGaugeRange1.InRange = false;
+            aGaugeRange1.Name = "baixa";
+            aGaugeRange1.OuterRadius = 110;
+            aGaugeRange1.StartValue = 0F;
+            aGaugeRange2.Color = System.Drawing.Color.Yellow;
+            aGaugeRange2.EndValue = 50F;
+            aGaugeRange2.InnerRadius = 80;
+            aGaugeRange2.InRange = false;
+            aGaugeRange2.Name = "media";
+            aGaugeRange2.OuterRadius = 110;
+            aGaugeRange2.StartValue = 25F;
+            aGaugeRange3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            aGaugeRange3.EndValue = 75F;
+            aGaugeRange3.InnerRadius = 80;
+            aGaugeRange3.InRange = false;
+            aGaugeRange3.Name = "alta";
+            aGaugeRange3.OuterRadius = 110;
+            aGaugeRange3.StartValue = 50F;
+            aGaugeRange4.Color = System.Drawing.Color.Red;
+            aGaugeRange4.EndValue = 100F;
+            aGaugeRange4.InnerRadius = 80;
+            aGaugeRange4.InRange = false;
+            aGaugeRange4.Name = "critica";
+            aGaugeRange4.OuterRadius = 110;
+            aGaugeRange4.StartValue = 75F;
+            this.aGauge1.GaugeRanges.Add(aGaugeRange1);
+            this.aGauge1.GaugeRanges.Add(aGaugeRange2);
+            this.aGauge1.GaugeRanges.Add(aGaugeRange3);
+            this.aGauge1.GaugeRanges.Add(aGaugeRange4);
+            this.aGauge1.Location = new System.Drawing.Point(473, 69);
+            this.aGauge1.MaxValue = 100F;
+            this.aGauge1.MinValue = 0F;
+            this.aGauge1.Name = "aGauge1";
+            this.aGauge1.NeedleColor1 = System.Windows.Forms.AGaugeNeedleColor.Gray;
+            this.aGauge1.NeedleColor2 = System.Drawing.Color.Black;
+            this.aGauge1.NeedleRadius = 110;
+            this.aGauge1.NeedleType = System.Windows.Forms.NeedleType.Advance;
+            this.aGauge1.NeedleWidth = 2;
+            this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
+            this.aGauge1.ScaleLinesInterInnerRadius = 100;
+            this.aGauge1.ScaleLinesInterOuterRadius = 110;
+            this.aGauge1.ScaleLinesInterWidth = 1;
+            this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
+            this.aGauge1.ScaleLinesMajorInnerRadius = 90;
+            this.aGauge1.ScaleLinesMajorOuterRadius = 110;
+            this.aGauge1.ScaleLinesMajorStepValue = 10F;
+            this.aGauge1.ScaleLinesMajorWidth = 2;
+            this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Black;
+            this.aGauge1.ScaleLinesMinorInnerRadius = 100;
+            this.aGauge1.ScaleLinesMinorOuterRadius = 110;
+            this.aGauge1.ScaleLinesMinorTicks = 9;
+            this.aGauge1.ScaleLinesMinorWidth = 1;
+            this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Black;
+            this.aGauge1.ScaleNumbersFormat = null;
+            this.aGauge1.ScaleNumbersRadius = 121;
+            this.aGauge1.ScaleNumbersRotation = 0;
+            this.aGauge1.ScaleNumbersStartScaleLine = 0;
+            this.aGauge1.ScaleNumbersStepScaleLines = 1;
+            this.aGauge1.Size = new System.Drawing.Size(485, 401);
+            this.aGauge1.TabIndex = 1;
+            this.aGauge1.Text = "aGauge1";
+            this.aGauge1.Value = 0F;
             // 
             // thermControl1
             // 
@@ -204,80 +280,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // aGauge1
-            // 
-            this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
-            this.aGauge1.BaseArcRadius = 80;
-            this.aGauge1.BaseArcStart = 135;
-            this.aGauge1.BaseArcSweep = 270;
-            this.aGauge1.BaseArcWidth = 2;
-            this.aGauge1.Center = new System.Drawing.Point(100, 100);
-            aGaugeRange1.Color = System.Drawing.Color.Lime;
-            aGaugeRange1.EndValue = 25F;
-            aGaugeRange1.InnerRadius = 50;
-            aGaugeRange1.InRange = false;
-            aGaugeRange1.Name = "baixa";
-            aGaugeRange1.OuterRadius = 80;
-            aGaugeRange1.StartValue = 0F;
-            aGaugeRange2.Color = System.Drawing.Color.Yellow;
-            aGaugeRange2.EndValue = 50F;
-            aGaugeRange2.InnerRadius = 50;
-            aGaugeRange2.InRange = false;
-            aGaugeRange2.Name = "media";
-            aGaugeRange2.OuterRadius = 80;
-            aGaugeRange2.StartValue = 25F;
-            aGaugeRange3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            aGaugeRange3.EndValue = 75F;
-            aGaugeRange3.InnerRadius = 50;
-            aGaugeRange3.InRange = false;
-            aGaugeRange3.Name = "alta";
-            aGaugeRange3.OuterRadius = 80;
-            aGaugeRange3.StartValue = 50F;
-            aGaugeRange4.Color = System.Drawing.Color.Red;
-            aGaugeRange4.EndValue = 100F;
-            aGaugeRange4.InnerRadius = 50;
-            aGaugeRange4.InRange = false;
-            aGaugeRange4.Name = "critica";
-            aGaugeRange4.OuterRadius = 80;
-            aGaugeRange4.StartValue = 75F;
-            this.aGauge1.GaugeRanges.Add(aGaugeRange1);
-            this.aGauge1.GaugeRanges.Add(aGaugeRange2);
-            this.aGauge1.GaugeRanges.Add(aGaugeRange3);
-            this.aGauge1.GaugeRanges.Add(aGaugeRange4);
-            this.aGauge1.Location = new System.Drawing.Point(556, 121);
-            this.aGauge1.MaxValue = 100F;
-            this.aGauge1.MinValue = 0F;
-            this.aGauge1.Name = "aGauge1";
-            this.aGauge1.NeedleColor1 = System.Windows.Forms.AGaugeNeedleColor.Gray;
-            this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge1.NeedleRadius = 80;
-            this.aGauge1.NeedleType = System.Windows.Forms.NeedleType.Advance;
-            this.aGauge1.NeedleWidth = 2;
-            this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesInterInnerRadius = 73;
-            this.aGauge1.ScaleLinesInterOuterRadius = 80;
-            this.aGauge1.ScaleLinesInterWidth = 1;
-            this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesMajorInnerRadius = 70;
-            this.aGauge1.ScaleLinesMajorOuterRadius = 80;
-            this.aGauge1.ScaleLinesMajorStepValue = 10F;
-            this.aGauge1.ScaleLinesMajorWidth = 2;
-            this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
-            this.aGauge1.ScaleLinesMinorInnerRadius = 75;
-            this.aGauge1.ScaleLinesMinorOuterRadius = 80;
-            this.aGauge1.ScaleLinesMinorTicks = 9;
-            this.aGauge1.ScaleLinesMinorWidth = 1;
-            this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleNumbersFormat = null;
-            this.aGauge1.ScaleNumbersRadius = 95;
-            this.aGauge1.ScaleNumbersRotation = 0;
-            this.aGauge1.ScaleNumbersStartScaleLine = 0;
-            this.aGauge1.ScaleNumbersStepScaleLines = 1;
-            this.aGauge1.Size = new System.Drawing.Size(310, 282);
-            this.aGauge1.TabIndex = 1;
-            this.aGauge1.Text = "aGauge1";
-            this.aGauge1.Value = 0F;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -285,9 +287,10 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SISTEMA DE MONITORAMENTO";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
