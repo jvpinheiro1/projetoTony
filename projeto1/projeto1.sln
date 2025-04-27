@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projeto1", "projeto1.csproj", "{665FAACB-567D-4A2B-98BF-71695E967FC8}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sistema de Monitoramento", "instalador\Sistema de Monitoramento\Sistema de Monitoramento.vdproj", "{14B0BE04-D9F7-A482-1E99-8CCC69811013}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,13 @@ Global
 		{665FAACB-567D-4A2B-98BF-71695E967FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665FAACB-567D-4A2B-98BF-71695E967FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665FAACB-567D-4A2B-98BF-71695E967FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B0BE04-D9F7-A482-1E99-8CCC69811013}.Debug|Any CPU.ActiveCfg = Debug
+		{14B0BE04-D9F7-A482-1E99-8CCC69811013}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93995D36-0250-47A2-A6DC-423699CB9FDB}
 	EndGlobalSection
 EndGlobal
