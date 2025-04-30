@@ -46,3 +46,16 @@ C:\Users\gabri\Desktop\github\projetoTony\projeto1\obj\Debug\projeto1.csproj.Cor
 C:\Users\gabri\Desktop\github\projetoTony\projeto1\obj\Debug\projeto1.csproj.Up2Date
 C:\Users\gabri\Desktop\github\projetoTony\projeto1\obj\Debug\projeto1.exe
 C:\Users\gabri\Desktop\github\projetoTony\projeto1\obj\Debug\projeto1.pdb
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\bin\Debug\projeto1.exe.config
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\bin\Debug\projeto1.exe
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\bin\Debug\projeto1.pdb
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\bin\Debug\AGauge.dll
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\bin\Debug\ThermometerControl.dll
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.AssemblyReference.cache
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.Form1.resources
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.Properties.Resources.resources
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.GenerateResource.cache
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.csproj.Up2Date
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.exe
+C:\Users\gabri\Desktop\github\Nova pasta\projetoTony\projeto1\obj\Debug\projeto1.pdb

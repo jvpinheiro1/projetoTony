@@ -24,6 +24,9 @@ namespace projeto1
             pictureBox2.Image = Image.FromFile("c:\\imagens\\Vermelho.bmp");
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            pictureBox3.Image = Image.FromFile("c:\\imagens\\iconeArduino.png");
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+
             serialPort1.DataReceived += serialPort1_DataReceived;
 
             label1.Text = "Desconectado";
@@ -141,6 +144,16 @@ namespace projeto1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
